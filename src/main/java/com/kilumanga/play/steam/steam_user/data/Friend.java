@@ -11,10 +11,10 @@ package com.kilumanga.play.steam.steam_user.data;
  * @author Amani
  *
  */
-public class FriendData {
+public class Friend {
 	private String steamid;
 	private String relationship;
-	private String friend_since;
+	private long friend_since;
 
 	public String getSteamid() {
 		return steamid;
@@ -32,11 +32,11 @@ public class FriendData {
 		this.relationship = relationship;
 	}
 
-	public String getFriend_since() {
+	public long getFriend_since() {
 		return friend_since;
 	}
 
-	public void setFriend_since(String friend_since) {
+	public void setFriend_since(long friend_since) {
 		this.friend_since = friend_since;
 	}
 }
