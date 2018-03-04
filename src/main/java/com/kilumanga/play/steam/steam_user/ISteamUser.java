@@ -7,9 +7,12 @@
  */
 package com.kilumanga.play.steam.steam_user;
 
+import java.util.List;
+
 import org.springframework.web.client.RestTemplate;
 
-import com.kilumanga.play.steam.steam_user.data.FriendData;
+import com.kilumanga.play.steam.steam_user.data.Friend;
+import com.kilumanga.play.steam.steam_user.data.GetFriendListResponse;
 
 /**
  * @author Amani
@@ -25,12 +28,12 @@ public class ISteamUser {
 
 	}
 
-	public FriendData[] getFriendList(String apiKey, String userId) {
+	public List<Friend> getFriendList(String apiKey, String userId) {
 		String uri = iSteamUser + "GetFriendList/v0001/?key={apiKey}&steamid={userId}&relationship=friend";
 		RestTemplate template = new RestTemplate();
-		String result = template.getForObject(uri, String.class, apiKey, userId);
-		System.out.println(result);
-		return null;
+
+		GetFriendListResponse response = template.getForObject(uri, GetFriendListResponse.class, apiKey, userId);
+		return response.getFriendslist().getFriends();
 	}
 
 	public void getPlayerBans() {
