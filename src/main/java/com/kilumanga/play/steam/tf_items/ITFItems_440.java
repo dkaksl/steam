@@ -12,5 +12,5 @@ package com.kilumanga.play.steam.tf_items;
  *
  */
 public class ITFItems_440 {
-
+	// TODO
 }

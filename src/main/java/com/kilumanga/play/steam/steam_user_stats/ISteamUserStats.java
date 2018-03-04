@@ -12,5 +12,5 @@ package com.kilumanga.play.steam.steam_user_stats;
  *
  */
 public class ISteamUserStats {
-
+	// TODO
 }

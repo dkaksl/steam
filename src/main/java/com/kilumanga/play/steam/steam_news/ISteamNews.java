@@ -12,5 +12,5 @@ package com.kilumanga.play.steam.steam_news;
  *
  */
 public class ISteamNews {
-
+	// TODO
 }
