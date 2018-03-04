@@ -1,8 +1,8 @@
 # steam
 
-Library for consuming Steam API
+Library for consuming the Steam Web API
 
-## How to build
+## How to Build
 
 1. Create the file `secret/apikey` and add your steam API key as one line of UTF-8 encoded text
 2. Call `mvn`
