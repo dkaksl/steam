@@ -43,10 +43,10 @@ public class ISteamUserTest {
 				StandardCharsets.UTF_8))) {
 			String fileApiKey = apiKeyReader.readLine();
 			if (fileApiKey == null) {
-				throw new IllegalArgumentException("wtf");
+				throw new IllegalArgumentException("unable to read api key");
 			}
 			if (fileApiKey.isEmpty()) {
-				throw new IllegalArgumentException("wtf");
+				throw new IllegalArgumentException("illegal api key or api key file format");
 			}
 			apiKey = fileApiKey;
 		}
