@@ -24,10 +24,6 @@ public class ISteamUser {
 	private final String iSteamUser = uriStub + "ISteamUser/";
 	private final String iPlayerService = uriStub + "IPlayerService/";
 
-	public void getPlayerSummaries() {
-
-	}
-
 	public List<Friend> getFriendList(String apiKey, String userId) {
 		String uri = iSteamUser + "GetFriendList/v0001/?key={apiKey}&steamid={userId}&relationship=friend";
 		RestTemplate template = new RestTemplate();
