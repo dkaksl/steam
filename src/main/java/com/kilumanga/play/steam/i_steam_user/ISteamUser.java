@@ -13,8 +13,10 @@ import org.springframework.web.client.RestTemplate;
 
 import com.kilumanga.play.steam.constant.ExceptionMessage;
 import com.kilumanga.play.steam.constant.Uri;
-import com.kilumanga.play.steam.i_steam_user.data.Friend;
-import com.kilumanga.play.steam.i_steam_user.data.GetFriendListResponse;
+import com.kilumanga.play.steam.i_steam_user.friends.Friend;
+import com.kilumanga.play.steam.i_steam_user.friends.GetFriendListResponse;
+import com.kilumanga.play.steam.i_steam_user.summaries.GetPlayerSummariesResponse;
+import com.kilumanga.play.steam.i_steam_user.summaries.Player;
 import com.kilumanga.play.steam.secret.ApiKey;
 
 /**
@@ -43,13 +45,13 @@ public class ISteamUser {
 		return response.getFriendslist().getFriends();
 	}
 
-	public void getPlayerSummaries(String... steamIds) {
+	public List<Player> getPlayerSummaries(String... steamIds) {
 		String uri = uriStub + "GetPlayerSummaries/v0002/?key={apiKey}&steamids={steamIds}";
 		RestTemplate template = new RestTemplate();
-		String response = template.getForObject(uri, String.class, apiKey.getKey(), steamIds);
-		System.out.println(response);
 
-		// TODO
+		GetPlayerSummariesResponse response = template.getForObject(uri, GetPlayerSummariesResponse.class,
+				apiKey.getKey(), steamIds);
+		return response.getResponse().getPlayers();
 	}
 
 	public void getPlayerBans(String... steamIds) {
