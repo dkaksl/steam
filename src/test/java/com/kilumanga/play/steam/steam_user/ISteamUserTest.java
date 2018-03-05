@@ -22,7 +22,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import com.kilumanga.play.steam.constant.ExceptionMessage;
 import com.kilumanga.play.steam.secret.ApiKey;
 import com.kilumanga.play.steam.steam_user.data.Friend;
 
