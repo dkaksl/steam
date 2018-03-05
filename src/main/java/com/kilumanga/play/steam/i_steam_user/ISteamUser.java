@@ -5,7 +5,7 @@
  * This software may be modified and distributed under the terms
  * of the MIT license.  See the LICENSE file for details.
  */
-package com.kilumanga.play.steam.steam_user;
+package com.kilumanga.play.steam.i_steam_user;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ import org.springframework.web.client.RestTemplate;
 
 import com.kilumanga.play.steam.constant.ExceptionMessage;
 import com.kilumanga.play.steam.constant.Uri;
+import com.kilumanga.play.steam.i_steam_user.data.Friend;
+import com.kilumanga.play.steam.i_steam_user.data.GetFriendListResponse;
 import com.kilumanga.play.steam.secret.ApiKey;
-import com.kilumanga.play.steam.steam_user.data.Friend;
-import com.kilumanga.play.steam.steam_user.data.GetFriendListResponse;
 
 /**
  * @author Amani

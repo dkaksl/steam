@@ -22,8 +22,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import com.kilumanga.play.steam.i_steam_user.ISteamUser;
+import com.kilumanga.play.steam.i_steam_user.data.Friend;
 import com.kilumanga.play.steam.secret.ApiKey;
-import com.kilumanga.play.steam.steam_user.data.Friend;
 
 /**
  * @author Amani
