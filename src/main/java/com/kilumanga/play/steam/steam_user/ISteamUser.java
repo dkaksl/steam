@@ -25,8 +25,7 @@ public class ISteamUser {
 
 	private final ApiKey apiKey;
 
-	private final String iSteamUser = Uri.SERVICE_STUB.getUri() + "ISteamUser/";
-	private final String iPlayerService = Uri.SERVICE_STUB.getUri() + "IPlayerService/";
+	private final String uriStub = Uri.SERVICE_STUB.getUri() + "ISteamUser/";
 
 	public ISteamUser(ApiKey apiKey) {
 		if (apiKey == null) {
@@ -36,7 +35,7 @@ public class ISteamUser {
 	}
 
 	public List<Friend> getFriendList(String userId) {
-		String uri = iSteamUser + "GetFriendList/v0001/?key={apiKey}&steamid={userId}&relationship=friend";
+		String uri = uriStub + "GetFriendList/v0001/?key={apiKey}&steamid={userId}&relationship=friend";
 		RestTemplate template = new RestTemplate();
 
 		GetFriendListResponse response = template.getForObject(uri, GetFriendListResponse.class, apiKey.getKey(),
@@ -44,8 +43,12 @@ public class ISteamUser {
 		return response.getFriendslist().getFriends();
 	}
 
-	public void getPlayerBans() {
+	public void getPlayerBans(String... steamIds) {
+		// TODO
+	}
 
+	public void getPlayerSummaries(String... steamIds) {
+		// TODO
 	}
 
 }
