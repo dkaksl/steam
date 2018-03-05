@@ -22,6 +22,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import com.kilumanga.play.steam.constant.ExceptionMessage;
+import com.kilumanga.play.steam.secret.ApiKey;
 import com.kilumanga.play.steam.steam_user.data.Friend;
 
 /**
@@ -29,7 +31,7 @@ import com.kilumanga.play.steam.steam_user.data.Friend;
  *
  */
 public class ISteamUserTest {
-	private static String apiKey;
+	private static ApiKey apiKey;
 
 	@Rule
 	public final ExpectedException exception = ExpectedException.none();
@@ -41,21 +43,14 @@ public class ISteamUserTest {
 						.getParentFile().getParentFile()
 						+ "/secret/apikey".replaceAll("/", Matcher.quoteReplacement(File.separator))),
 				StandardCharsets.UTF_8))) {
-			String fileApiKey = apiKeyReader.readLine();
-			if (fileApiKey == null) {
-				throw new IllegalArgumentException("unable to read api key");
-			}
-			if (fileApiKey.isEmpty()) {
-				throw new IllegalArgumentException("illegal api key or api key file format");
-			}
-			apiKey = fileApiKey;
+			apiKey = new ApiKey(apiKeyReader.readLine());
 		}
 	}
 
 	@Test
 	public void test() {
-		ISteamUser iSteamUser = new ISteamUser();
-		List<Friend> friends = iSteamUser.getFriendList(apiKey, "76561197960435530");
+		ISteamUser iSteamUser = new ISteamUser(apiKey);
+		List<Friend> friends = iSteamUser.getFriendList("76561197960435530");
 		for (Friend friend : friends) {
 			System.out.println("steamid: " + friend.getSteamid());
 		}
