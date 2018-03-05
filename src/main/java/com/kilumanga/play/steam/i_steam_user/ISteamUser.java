@@ -43,11 +43,16 @@ public class ISteamUser {
 		return response.getFriendslist().getFriends();
 	}
 
-	public void getPlayerBans(String... steamIds) {
+	public void getPlayerSummaries(String... steamIds) {
+		String uri = uriStub + "GetPlayerSummaries/v0002/?key={apiKey}&steamids={steamIds}";
+		RestTemplate template = new RestTemplate();
+		String response = template.getForObject(uri, String.class, apiKey.getKey(), steamIds);
+		System.out.println(response);
+
 		// TODO
 	}
 
-	public void getPlayerSummaries(String... steamIds) {
+	public void getPlayerBans(String... steamIds) {
 		// TODO
 	}
 
