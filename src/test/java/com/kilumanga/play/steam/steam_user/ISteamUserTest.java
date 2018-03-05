@@ -48,11 +48,17 @@ public class ISteamUserTest {
 	}
 
 	@Test
-	public void test() {
+	public void testGetFriendList() {
 		ISteamUser iSteamUser = new ISteamUser(apiKey);
 		List<Friend> friends = iSteamUser.getFriendList("76561197960435530");
 		for (Friend friend : friends) {
 			System.out.println("steamid: " + friend.getSteamid());
 		}
+	}
+
+	@Test
+	public void testGetPlayerSummaries() {
+		ISteamUser iSteamUser = new ISteamUser(apiKey);
+		iSteamUser.getPlayerSummaries("76561197960435530");
 	}
 }
