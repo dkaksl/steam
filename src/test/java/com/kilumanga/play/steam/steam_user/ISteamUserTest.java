@@ -23,7 +23,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import com.kilumanga.play.steam.i_steam_user.ISteamUser;
-import com.kilumanga.play.steam.i_steam_user.data.Friend;
+import com.kilumanga.play.steam.i_steam_user.friends.Friend;
+import com.kilumanga.play.steam.i_steam_user.summaries.Player;
 import com.kilumanga.play.steam.secret.ApiKey;
 
 /**
@@ -52,13 +53,16 @@ public class ISteamUserTest {
 		ISteamUser iSteamUser = new ISteamUser(apiKey);
 		List<Friend> friends = iSteamUser.getFriendList("76561197960435530");
 		for (Friend friend : friends) {
-			System.out.println("steamid: " + friend.getSteamid());
+			System.out.println("friend steamid: " + friend.getSteamid());
 		}
 	}
 
 	@Test
 	public void testGetPlayerSummaries() {
 		ISteamUser iSteamUser = new ISteamUser(apiKey);
-		iSteamUser.getPlayerSummaries("76561197960435530");
+		List<Player> players = iSteamUser.getPlayerSummaries("76561197960435530");
+		for (Player player : players) {
+			System.out.println("player steamid: " + player.getSteamid());
+		}
 	}
 }
