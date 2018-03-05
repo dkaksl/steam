@@ -11,6 +11,9 @@ import java.util.List;
 
 import org.springframework.web.client.RestTemplate;
 
+import com.kilumanga.play.steam.constant.ExceptionMessage;
+import com.kilumanga.play.steam.constant.Uri;
+import com.kilumanga.play.steam.secret.ApiKey;
 import com.kilumanga.play.steam.steam_user.data.Friend;
 import com.kilumanga.play.steam.steam_user.data.GetFriendListResponse;
 
@@ -20,15 +23,24 @@ import com.kilumanga.play.steam.steam_user.data.GetFriendListResponse;
  */
 public class ISteamUser {
 
-	private final String uriStub = "http://api.steampowered.com/";
-	private final String iSteamUser = uriStub + "ISteamUser/";
-	private final String iPlayerService = uriStub + "IPlayerService/";
+	private final ApiKey apiKey;
 
-	public List<Friend> getFriendList(String apiKey, String userId) {
+	private final String iSteamUser = Uri.SERVICE_STUB.getUri() + "ISteamUser/";
+	private final String iPlayerService = Uri.SERVICE_STUB.getUri() + "IPlayerService/";
+
+	public ISteamUser(ApiKey apiKey) {
+		if (apiKey == null) {
+			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
+		}
+		this.apiKey = apiKey;
+	}
+
+	public List<Friend> getFriendList(String userId) {
 		String uri = iSteamUser + "GetFriendList/v0001/?key={apiKey}&steamid={userId}&relationship=friend";
 		RestTemplate template = new RestTemplate();
 
-		GetFriendListResponse response = template.getForObject(uri, GetFriendListResponse.class, apiKey, userId);
+		GetFriendListResponse response = template.getForObject(uri, GetFriendListResponse.class, apiKey.getKey(),
+				userId);
 		return response.getFriendslist().getFriends();
 	}
 
