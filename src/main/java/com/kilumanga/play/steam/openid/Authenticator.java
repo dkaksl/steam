@@ -22,6 +22,7 @@ import org.openid4java.message.ParameterList;
 
 import com.kilumanga.play.steam.constant.ExceptionMessage;
 import com.kilumanga.play.steam.constant.Uri;
+import com.kilumanga.play.steam.openid.data.CallbackUrl;
 
 /**
  * @author Amani
@@ -36,19 +37,15 @@ public class Authenticator {
 		discoveryInformation = consumerManager.associate(consumerManager.discover(Uri.STEAM_OPENID.getUri()));
 	}
 
-	public String getLoginUrl(String callbackUrl) throws MessageException, ConsumerException {
+	public String getLoginUrl(CallbackUrl callbackUrl) throws MessageException, ConsumerException {
 		if (callbackUrl == null) {
 			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
 		}
-
-		if (callbackUrl.isEmpty()) {
-			throw new IllegalArgumentException(ExceptionMessage.INVALID_CALLBACK_URL.getExceptionMessage());
-		}
-		AuthRequest authRequest = consumerManager.authenticate(discoveryInformation, callbackUrl);
+		AuthRequest authRequest = consumerManager.authenticate(discoveryInformation, callbackUrl.getUrl());
 		return authRequest.getDestinationUrl(true);
 	}
 
-	public String getVerifiedSteamId(String callbackUrl, Map<String, String> responseMap)
+	public String getVerifiedSteamId(CallbackUrl callbackUrl, Map<String, String> responseMap)
 			throws MessageException, DiscoveryException, AssociationException {
 		if (callbackUrl == null) {
 			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
@@ -56,12 +53,8 @@ public class Authenticator {
 		if (responseMap == null) {
 			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
 		}
-
-		if (callbackUrl.isEmpty()) {
-			throw new IllegalArgumentException(ExceptionMessage.INVALID_CALLBACK_URL.getExceptionMessage());
-		}
 		ParameterList parameterList = new ParameterList(responseMap);
-		VerificationResult verificationResult = consumerManager.verify(callbackUrl, parameterList,
+		VerificationResult verificationResult = consumerManager.verify(callbackUrl.getUrl(), parameterList,
 				this.discoveryInformation);
 		Identifier verifiedId = verificationResult.getVerifiedId();
 		if (verifiedId == null) {
