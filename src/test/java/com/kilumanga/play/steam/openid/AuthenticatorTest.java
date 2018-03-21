@@ -18,13 +18,14 @@ import org.openid4java.discovery.DiscoveryException;
 import org.openid4java.message.MessageException;
 
 import com.kilumanga.play.steam.constant.ExceptionMessage;
+import com.kilumanga.play.steam.openid.data.CallbackUrl;
 
 /**
  * @author Amani
  *
  */
 public class AuthenticatorTest {
-	private final String callbackUrl = "https://steam.kilumanga.com";
+	private final CallbackUrl callbackUrl = new CallbackUrl("https://steam.kilumanga.com");
 
 	@Rule
 	public final ExpectedException exception = ExpectedException.none();
@@ -44,14 +45,6 @@ public class AuthenticatorTest {
 	}
 
 	@Test
-	public void testBlankLoginCallback() throws DiscoveryException, MessageException, ConsumerException {
-		Authenticator authenticator = new Authenticator();
-		exception.expect(IllegalArgumentException.class);
-		exception.expectMessage(ExceptionMessage.INVALID_CALLBACK_URL.getExceptionMessage());
-		authenticator.getLoginUrl("");
-	}
-
-	@Test
 	public void testNullVerifyCallback() throws DiscoveryException, MessageException, AssociationException {
 		Authenticator authenticator = new Authenticator();
 		exception.expect(IllegalArgumentException.class);
@@ -65,14 +58,6 @@ public class AuthenticatorTest {
 		exception.expect(IllegalArgumentException.class);
 		exception.expectMessage(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
 		authenticator.getVerifiedSteamId(callbackUrl, null);
-	}
-
-	@Test
-	public void testBlankVerifyCallback() throws DiscoveryException, MessageException, AssociationException {
-		Authenticator authenticator = new Authenticator();
-		exception.expect(IllegalArgumentException.class);
-		exception.expectMessage(ExceptionMessage.INVALID_CALLBACK_URL.getExceptionMessage());
-		authenticator.getVerifiedSteamId("", new HashMap<String, String>());
 	}
 
 }
