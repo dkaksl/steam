@@ -50,6 +50,16 @@ public class Authenticator {
 
 	public String getVerifiedSteamId(String callbackUrl, Map<String, String> responseMap)
 			throws MessageException, DiscoveryException, AssociationException {
+		if (callbackUrl == null) {
+			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
+		}
+		if (responseMap == null) {
+			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
+		}
+
+		if (callbackUrl.isEmpty()) {
+			throw new IllegalArgumentException(ExceptionMessage.INVALID_CALLBACK_URL.getExceptionMessage());
+		}
 		ParameterList parameterList = new ParameterList(responseMap);
 		VerificationResult verificationResult = consumerManager.verify(callbackUrl, parameterList,
 				this.discoveryInformation);
