@@ -13,8 +13,8 @@ package com.kilumanga.play.steam.i_player_service.pojo;
  */
 public class Game {
 	private Integer appid;
-	private Integer playtimeForever;
-	private Integer playtime2weeks;
+	private Integer playtime_forever;
+	private Integer playtime_2weeks;
 
 	public Integer getAppid() {
 		return appid;
@@ -24,19 +24,20 @@ public class Game {
 		this.appid = appid;
 	}
 
-	public Integer getPlaytimeForever() {
-		return playtimeForever;
+	public Integer getPlaytime_forever() {
+		return playtime_forever;
 	}
 
-	public void setPlaytimeForever(Integer playtimeForever) {
-		this.playtimeForever = playtimeForever;
+	public void setPlaytime_forever(Integer playtime_forever) {
+		this.playtime_forever = playtime_forever;
 	}
 
-	public Integer getPlaytime2weeks() {
-		return playtime2weeks;
+	public Integer getPlaytime_2weeks() {
+		return playtime_2weeks;
 	}
 
-	public void setPlaytime2weeks(Integer playtime2weeks) {
-		this.playtime2weeks = playtime2weeks;
+	public void setPlaytime_2weeks(Integer playtime_2weeks) {
+		this.playtime_2weeks = playtime_2weeks;
 	}
+
 }
