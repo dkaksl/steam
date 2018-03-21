@@ -13,6 +13,7 @@ package com.kilumanga.play.steam.constant;
  */
 public enum Uri {
 	SERVICE_STUB("http://api.steampowered.com/"), //
+	STEAM_OPENID("http://steamcommunity.com/openid"), //
 	;
 
 	private final String uri;
