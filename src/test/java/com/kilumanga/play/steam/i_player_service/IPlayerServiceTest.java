@@ -22,6 +22,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import com.kilumanga.play.steam.constant.ID;
+import com.kilumanga.play.steam.i_player_service.pojo.Game;
 import com.kilumanga.play.steam.i_steam_user.ISteamUserTest;
 import com.kilumanga.play.steam.secret.ApiKey;
 
@@ -49,6 +50,8 @@ public class IPlayerServiceTest {
 	@Test
 	public void testGetFriendList() {
 		IPlayerService iPlayerService = new IPlayerService(apiKey);
-		System.out.println(iPlayerService.getOwnedGames(ID.DEFAULT.getUserId()));
+		for (Game game : iPlayerService.getOwnedGames(ID.DEFAULT.getUserId()).getResponse().getGames()) {
+			System.out.println("appid: " + game.getAppid() + ", playtime_forever: " + game.getPlaytime_forever());
+		}
 	}
 }
