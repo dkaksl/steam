@@ -7,8 +7,7 @@
  */
 package com.kilumanga.play.steam.openid;
 
-import java.util.HashMap;
-
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -25,39 +24,27 @@ import com.kilumanga.play.steam.openid.data.CallbackUrl;
  *
  */
 public class AuthenticatorTest {
-	private final CallbackUrl callbackUrl = new CallbackUrl("https://steam.kilumanga.com");
+	private static final CallbackUrl callbackUrl = new CallbackUrl("https://steam.kilumanga.com");
+	private static Authenticator authenticator;
+
+	@BeforeClass
+	public static void setUp() throws DiscoveryException {
+		authenticator = new Authenticator(callbackUrl);
+	}
 
 	@Rule
 	public final ExpectedException exception = ExpectedException.none();
 
 	@Test
-	public void testRequestRedirect() throws DiscoveryException, MessageException, ConsumerException {
-		Authenticator authenticator = new Authenticator();
+	public void testRequestRedirect() throws MessageException, ConsumerException {
 		System.out.println(authenticator.getLoginUrl(callbackUrl));
 	}
 
 	@Test
-	public void testNullLoginCallback() throws DiscoveryException, MessageException, ConsumerException {
-		Authenticator authenticator = new Authenticator();
-		exception.expect(IllegalArgumentException.class);
-		exception.expectMessage(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
-		authenticator.getLoginUrl(null);
-	}
-
-	@Test
-	public void testNullVerifyCallback() throws DiscoveryException, MessageException, AssociationException {
-		Authenticator authenticator = new Authenticator();
-		exception.expect(IllegalArgumentException.class);
-		exception.expectMessage(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
-		authenticator.getVerifiedSteamId(null, new HashMap<String, String>());
-	}
-
-	@Test
 	public void testNullVerifyResponseMap() throws DiscoveryException, MessageException, AssociationException {
-		Authenticator authenticator = new Authenticator();
 		exception.expect(IllegalArgumentException.class);
 		exception.expectMessage(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
-		authenticator.getVerifiedSteamId(callbackUrl, null);
+		authenticator.getVerifiedSteamId(null);
 	}
 
 }
