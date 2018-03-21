@@ -48,7 +48,7 @@ public class IPlayerServiceTest {
 	}
 
 	@Test
-	public void testGetFriendList() {
+	public void testGetOwnedGames() {
 		IPlayerService iPlayerService = new IPlayerService(apiKey);
 		for (Game game : iPlayerService.getOwnedGames(ID.DEFAULT.getUserId()).getResponse().getGames()) {
 			System.out.println("appid: " + game.getAppid() + ", playtime_forever: " + game.getPlaytime_forever());
