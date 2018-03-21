@@ -5,7 +5,7 @@
  * This software may be modified and distributed under the terms
  * of the MIT license.  See the LICENSE file for details.
  */
-package com.kilumanga.play.steam.steam_user;
+package com.kilumanga.play.steam.i_steam_user;
 
 import java.io.BufferedReader;
 import java.io.File;
