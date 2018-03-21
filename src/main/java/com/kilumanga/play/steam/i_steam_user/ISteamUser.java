@@ -15,8 +15,8 @@ import com.kilumanga.play.steam.constant.ExceptionMessage;
 import com.kilumanga.play.steam.constant.Uri;
 import com.kilumanga.play.steam.i_steam_user.pojo.Friend;
 import com.kilumanga.play.steam.i_steam_user.pojo.GetFriendListResponse;
-import com.kilumanga.play.steam.i_steam_user.summaries.GetPlayerSummariesResponse;
-import com.kilumanga.play.steam.i_steam_user.summaries.Player;
+import com.kilumanga.play.steam.i_steam_user.pojo.GetPlayerSummariesResponse;
+import com.kilumanga.play.steam.i_steam_user.pojo.Player;
 import com.kilumanga.play.steam.secret.ApiKey;
 
 /**
