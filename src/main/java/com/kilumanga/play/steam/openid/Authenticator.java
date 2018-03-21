@@ -29,32 +29,31 @@ import com.kilumanga.play.steam.openid.data.CallbackUrl;
  *
  */
 public class Authenticator {
+	private final CallbackUrl callbackUrl;
 	private final ConsumerManager consumerManager = new ConsumerManager();
 	private final DiscoveryInformation discoveryInformation;
 
-	public Authenticator() throws DiscoveryException {
+	public Authenticator(CallbackUrl callbackUrl) throws DiscoveryException {
+		if (callbackUrl == null) {
+			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
+		}
+		this.callbackUrl = callbackUrl;
 		consumerManager.setMaxAssocAttempts(0);
 		discoveryInformation = consumerManager.associate(consumerManager.discover(Uri.STEAM_OPENID.getUri()));
 	}
 
 	public String getLoginUrl(CallbackUrl callbackUrl) throws MessageException, ConsumerException {
-		if (callbackUrl == null) {
-			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
-		}
-		AuthRequest authRequest = consumerManager.authenticate(discoveryInformation, callbackUrl.getUrl());
+		AuthRequest authRequest = consumerManager.authenticate(discoveryInformation, this.callbackUrl.getUrl());
 		return authRequest.getDestinationUrl(true);
 	}
 
-	public String getVerifiedSteamId(CallbackUrl callbackUrl, Map<String, String> responseMap)
+	public String getVerifiedSteamId(Map<String, String> responseMap)
 			throws MessageException, DiscoveryException, AssociationException {
-		if (callbackUrl == null) {
-			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
-		}
 		if (responseMap == null) {
 			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
 		}
 		ParameterList parameterList = new ParameterList(responseMap);
-		VerificationResult verificationResult = consumerManager.verify(callbackUrl.getUrl(), parameterList,
+		VerificationResult verificationResult = consumerManager.verify(this.callbackUrl.getUrl(), parameterList,
 				this.discoveryInformation);
 		Identifier verifiedId = verificationResult.getVerifiedId();
 		if (verifiedId == null) {
