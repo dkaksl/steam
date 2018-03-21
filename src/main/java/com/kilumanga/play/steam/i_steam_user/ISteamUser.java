@@ -13,8 +13,8 @@ import org.springframework.web.client.RestTemplate;
 
 import com.kilumanga.play.steam.constant.ExceptionMessage;
 import com.kilumanga.play.steam.constant.Uri;
-import com.kilumanga.play.steam.i_steam_user.friends.Friend;
-import com.kilumanga.play.steam.i_steam_user.friends.GetFriendListResponse;
+import com.kilumanga.play.steam.i_steam_user.pojo.Friend;
+import com.kilumanga.play.steam.i_steam_user.pojo.GetFriendListResponse;
 import com.kilumanga.play.steam.i_steam_user.summaries.GetPlayerSummariesResponse;
 import com.kilumanga.play.steam.i_steam_user.summaries.Player;
 import com.kilumanga.play.steam.secret.ApiKey;
