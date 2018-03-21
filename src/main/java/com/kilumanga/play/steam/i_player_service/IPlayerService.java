@@ -1,0 +1,38 @@
+/** 
+ * 
+ * Copyright (C) 2018 Amani
+ *
+ * This software may be modified and distributed under the terms
+ * of the MIT license.  See the LICENSE file for details.
+ */
+package com.kilumanga.play.steam.i_player_service;
+
+import org.springframework.web.client.RestTemplate;
+
+import com.kilumanga.play.steam.constant.ExceptionMessage;
+import com.kilumanga.play.steam.constant.Uri;
+import com.kilumanga.play.steam.secret.ApiKey;
+
+/**
+ * @author Amani
+ *
+ */
+public class IPlayerService {
+	private final ApiKey apiKey;
+
+	private final String uriStub = Uri.SERVICE_STUB.getUri() + "IPlayerService/";
+
+	public IPlayerService(ApiKey apiKey) {
+		if (apiKey == null) {
+			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
+		}
+		this.apiKey = apiKey;
+	}
+
+	public String getOwnedGames(String userId) {
+		String uri = uriStub + "GetOwnedGames/v0001/?key={apiKey}&steamid={userId}";
+		RestTemplate template = new RestTemplate();
+
+		return template.getForObject(uri, String.class, apiKey.getKey(), userId);
+	}
+}
