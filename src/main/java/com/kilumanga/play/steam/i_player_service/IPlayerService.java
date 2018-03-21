@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.kilumanga.play.steam.constant.ExceptionMessage;
 import com.kilumanga.play.steam.constant.Uri;
+import com.kilumanga.play.steam.i_player_service.pojo.GetOwnedGamesResponse;
 import com.kilumanga.play.steam.secret.ApiKey;
 
 /**
@@ -29,10 +30,11 @@ public class IPlayerService {
 		this.apiKey = apiKey;
 	}
 
-	public String getOwnedGames(String userId) {
+	public GetOwnedGamesResponse getOwnedGames(String userId) {
 		String uri = uriStub + "GetOwnedGames/v0001/?key={apiKey}&steamid={userId}";
 		RestTemplate template = new RestTemplate();
-
-		return template.getForObject(uri, String.class, apiKey.getKey(), userId);
+		GetOwnedGamesResponse response = template.getForObject(uri, GetOwnedGamesResponse.class, apiKey.getKey(),
+				userId);
+		return response;
 	}
 }
