@@ -7,9 +7,12 @@
  */
 package com.kilumanga.play.steam.openid;
 
+import java.util.HashMap;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.openid4java.association.AssociationException;
 import org.openid4java.consumer.ConsumerException;
 import org.openid4java.discovery.DiscoveryException;
 import org.openid4java.message.MessageException;
@@ -33,7 +36,7 @@ public class AuthenticatorTest {
 	}
 
 	@Test
-	public void testNullCallback() throws DiscoveryException, MessageException, ConsumerException {
+	public void testNullLoginCallback() throws DiscoveryException, MessageException, ConsumerException {
 		Authenticator authenticator = new Authenticator();
 		exception.expect(IllegalArgumentException.class);
 		exception.expectMessage(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
@@ -41,11 +44,35 @@ public class AuthenticatorTest {
 	}
 
 	@Test
-	public void testBlankCallback() throws DiscoveryException, MessageException, ConsumerException {
+	public void testBlankLoginCallback() throws DiscoveryException, MessageException, ConsumerException {
 		Authenticator authenticator = new Authenticator();
 		exception.expect(IllegalArgumentException.class);
 		exception.expectMessage(ExceptionMessage.INVALID_CALLBACK_URL.getExceptionMessage());
 		authenticator.getLoginUrl("");
+	}
+
+	@Test
+	public void testNullVerifyCallback() throws DiscoveryException, MessageException, AssociationException {
+		Authenticator authenticator = new Authenticator();
+		exception.expect(IllegalArgumentException.class);
+		exception.expectMessage(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
+		authenticator.getVerifiedSteamId(null, new HashMap<String, String>());
+	}
+
+	@Test
+	public void testNullVerifyResponseMap() throws DiscoveryException, MessageException, AssociationException {
+		Authenticator authenticator = new Authenticator();
+		exception.expect(IllegalArgumentException.class);
+		exception.expectMessage(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
+		authenticator.getVerifiedSteamId(callbackUrl, null);
+	}
+
+	@Test
+	public void testBlankVerifyCallback() throws DiscoveryException, MessageException, AssociationException {
+		Authenticator authenticator = new Authenticator();
+		exception.expect(IllegalArgumentException.class);
+		exception.expectMessage(ExceptionMessage.INVALID_CALLBACK_URL.getExceptionMessage());
+		authenticator.getVerifiedSteamId("", new HashMap<String, String>());
 	}
 
 }
