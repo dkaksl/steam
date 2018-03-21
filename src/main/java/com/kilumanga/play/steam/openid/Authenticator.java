@@ -14,6 +14,7 @@ import org.openid4java.discovery.DiscoveryInformation;
 import org.openid4java.message.AuthRequest;
 import org.openid4java.message.MessageException;
 
+import com.kilumanga.play.steam.constant.ExceptionMessage;
 import com.kilumanga.play.steam.constant.Uri;
 
 /**
@@ -28,6 +29,14 @@ public class Authenticator {
 	}
 
 	public String getLoginUrl(String callbackUrl) throws DiscoveryException, MessageException, ConsumerException {
+		if (callbackUrl == null) {
+			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
+		}
+
+		if (callbackUrl.isEmpty()) {
+			throw new IllegalArgumentException(ExceptionMessage.INVALID_CALLBACK_URL.getExceptionMessage());
+		}
+
 		DiscoveryInformation discoveryInformation = consumerManager
 				.associate(consumerManager.discover(Uri.STEAM_OPENID.getUri()));
 		AuthRequest authRequest = consumerManager.authenticate(discoveryInformation, callbackUrl);

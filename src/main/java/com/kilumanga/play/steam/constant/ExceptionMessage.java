@@ -15,6 +15,8 @@ public enum ExceptionMessage {
 	NULL_PARAMETER(), //
 
 	INVALID_API_KEY(), //
+
+	INVALID_CALLBACK_URL(), //
 	;
 
 	public String getExceptionMessage() {
