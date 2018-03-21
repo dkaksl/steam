@@ -61,7 +61,6 @@ public class Authenticator {
 	}
 
 	private String extractSteamId(String identifier) {
-		System.out.println(identifier);
-		return identifier;
+		return identifier.replaceAll("http://steamcommunity.com/openid/id/", "");
 	}
 }
