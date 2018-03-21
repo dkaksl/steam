@@ -46,6 +46,9 @@ public class ISteamUser {
 	}
 
 	public List<Player> getPlayerSummaries(String... steamIds) {
+		if (steamIds.length > 100) {
+			throw new IllegalArgumentException(ExceptionMessage.TOO_MANY_IDS.getExceptionMessage());
+		}
 		String uri = uriStub + "GetPlayerSummaries/v0002/?key={apiKey}&steamids={steamIds}";
 		RestTemplate template = new RestTemplate();
 

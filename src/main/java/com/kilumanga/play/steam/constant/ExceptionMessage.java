@@ -14,6 +14,8 @@ package com.kilumanga.play.steam.constant;
 public enum ExceptionMessage {
 	NULL_PARAMETER(), //
 
+	TOO_MANY_IDS(), //
+
 	INVALID_API_KEY(), //
 
 	INVALID_CALLBACK_URL(), //
