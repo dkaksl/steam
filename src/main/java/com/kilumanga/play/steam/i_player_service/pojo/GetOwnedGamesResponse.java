@@ -5,7 +5,7 @@
  * This software may be modified and distributed under the terms
  * of the MIT license.  See the LICENSE file for details.
  */
-package com.kilumanga.play.steam.i_player_service;
+package com.kilumanga.play.steam.i_player_service.pojo;
 
 /**
  * @author Amani
