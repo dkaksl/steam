@@ -21,13 +21,15 @@ import com.kilumanga.play.steam.constant.ExceptionMessage;
  *
  */
 public class AuthenticatorTest {
+	private final String callbackUrl = "https://steam.kilumanga.com";
+
 	@Rule
 	public final ExpectedException exception = ExpectedException.none();
 
 	@Test
-	public void test() throws DiscoveryException, MessageException, ConsumerException {
+	public void testRequestRedirect() throws DiscoveryException, MessageException, ConsumerException {
 		Authenticator authenticator = new Authenticator();
-		System.out.println(authenticator.getLoginUrl("https://steam.kilumanga.com"));
+		System.out.println(authenticator.getLoginUrl(callbackUrl));
 	}
 
 	@Test
