@@ -2,6 +2,14 @@
 
 Library for consuming the Steam Web API
 
+## Maven Dependency
+
+    <dependency>
+      <groupId>com.kilumanga.play</groupId>
+      <artifactId>steam</artifactId>
+      <version>0.0.1</version>
+    </depencency>
+
 ## How to Build
 
 1.  Create the file `secret/apikey` and add your steam API key as one line of UTF-8 encoded text
