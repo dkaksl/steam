@@ -8,7 +8,7 @@ Library for consuming the Steam Web API
       <groupId>com.kilumanga.play</groupId>
       <artifactId>steam</artifactId>
       <version>0.0.1</version>
-    </depencency>
+    </dependency>
 
 ## How to Build
 
