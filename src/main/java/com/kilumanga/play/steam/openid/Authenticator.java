@@ -42,7 +42,7 @@ public class Authenticator {
 		discoveryInformation = consumerManager.associate(consumerManager.discover(Uri.STEAM_OPENID.getUri()));
 	}
 
-	public String getLoginUrl(CallbackUrl callbackUrl) throws MessageException, ConsumerException {
+	public String getLoginUrl() throws MessageException, ConsumerException {
 		AuthRequest authRequest = consumerManager.authenticate(discoveryInformation, this.callbackUrl.getUrl());
 		return authRequest.getDestinationUrl(true);
 	}
