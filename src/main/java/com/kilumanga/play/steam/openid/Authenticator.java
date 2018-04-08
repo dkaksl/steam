@@ -29,40 +29,38 @@ import com.kilumanga.play.steam.openid.data.CallbackUrl;
  *
  */
 public class Authenticator {
-	private final CallbackUrl callbackUrl;
-	private final ConsumerManager consumerManager = new ConsumerManager();
-	private final DiscoveryInformation discoveryInformation;
+    private final CallbackUrl callbackUrl;
+    private final ConsumerManager consumerManager = new ConsumerManager();
+    private final DiscoveryInformation discoveryInformation;
 
-	public Authenticator(CallbackUrl callbackUrl) throws DiscoveryException {
-		if (callbackUrl == null) {
-			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
-		}
-		this.callbackUrl = callbackUrl;
-		consumerManager.setMaxAssocAttempts(0);
-		discoveryInformation = consumerManager.associate(consumerManager.discover(Uri.STEAM_OPENID.getUri()));
-	}
+    public Authenticator(CallbackUrl callbackUrl) throws DiscoveryException {
+        if (callbackUrl == null) {
+            throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
+        }
+        this.callbackUrl = callbackUrl;
+        consumerManager.setMaxAssocAttempts(0);
+        discoveryInformation = consumerManager.associate(consumerManager.discover(Uri.STEAM_OPENID.getUri()));
+    }
 
-	public String getLoginUrl(CallbackUrl callbackUrl) throws MessageException, ConsumerException {
-		AuthRequest authRequest = consumerManager.authenticate(discoveryInformation, this.callbackUrl.getUrl());
-		return authRequest.getDestinationUrl(true);
-	}
+    public String getLoginUrl() throws MessageException, ConsumerException {
+        AuthRequest authRequest = consumerManager.authenticate(discoveryInformation, this.callbackUrl.getUrl());
+        return authRequest.getDestinationUrl(true);
+    }
 
-	public String getVerifiedSteamId(Map<String, String> responseMap)
-			throws MessageException, DiscoveryException, AssociationException {
-		if (responseMap == null) {
-			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
-		}
-		ParameterList parameterList = new ParameterList(responseMap);
-		VerificationResult verificationResult = consumerManager.verify(this.callbackUrl.getUrl(), parameterList,
-				this.discoveryInformation);
-		Identifier verifiedId = verificationResult.getVerifiedId();
-		if (verifiedId == null) {
-			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
-		}
-		return extractSteamId(verifiedId.getIdentifier());
-	}
+    public String getVerifiedSteamId(Map<String, String> responseMap) throws MessageException, DiscoveryException, AssociationException {
+        if (responseMap == null) {
+            throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
+        }
+        ParameterList parameterList = new ParameterList(responseMap);
+        VerificationResult verificationResult = consumerManager.verify(this.callbackUrl.getUrl(), parameterList, this.discoveryInformation);
+        Identifier verifiedId = verificationResult.getVerifiedId();
+        if (verifiedId == null) {
+            throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
+        }
+        return extractSteamId(verifiedId.getIdentifier());
+    }
 
-	private String extractSteamId(String identifier) {
-		return identifier.replaceAll("http://steamcommunity.com/openid/id/", "");
-	}
+    private String extractSteamId(String identifier) {
+        return identifier.replaceAll("https://steamcommunity.com/openid/id/", "");
+    }
 }
