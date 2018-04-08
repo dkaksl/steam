@@ -37,7 +37,7 @@ public class AuthenticatorTest {
 
 	@Test
 	public void testRequestRedirect() throws MessageException, ConsumerException {
-		System.out.println(authenticator.getLoginUrl(callbackUrl));
+		System.out.println(authenticator.getLoginUrl());
 	}
 
 	@Test
