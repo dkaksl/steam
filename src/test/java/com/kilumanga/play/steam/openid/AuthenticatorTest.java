@@ -24,27 +24,27 @@ import com.kilumanga.play.steam.openid.data.CallbackUrl;
  *
  */
 public class AuthenticatorTest {
-	private static final CallbackUrl callbackUrl = new CallbackUrl("https://steam.kilumanga.com");
-	private static Authenticator authenticator;
+    private static final CallbackUrl callbackUrl = new CallbackUrl("https://steam.kilumanga.com");
+    private static Authenticator authenticator;
 
-	@BeforeClass
-	public static void setUp() throws DiscoveryException {
-		authenticator = new Authenticator(callbackUrl);
-	}
+    @BeforeClass
+    public static void setUp() throws DiscoveryException {
+        authenticator = new Authenticator(callbackUrl);
+    }
 
-	@Rule
-	public final ExpectedException exception = ExpectedException.none();
+    @Rule
+    public final ExpectedException exception = ExpectedException.none();
 
-	@Test
-	public void testRequestRedirect() throws MessageException, ConsumerException {
-		System.out.println(authenticator.getLoginUrl());
-	}
+    @Test
+    public void testRequestRedirect() throws MessageException, ConsumerException {
+        System.out.println(authenticator.getLoginUrl());
+    }
 
-	@Test
-	public void testNullVerifyResponseMap() throws DiscoveryException, MessageException, AssociationException {
-		exception.expect(IllegalArgumentException.class);
-		exception.expectMessage(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
-		authenticator.getVerifiedSteamId(null);
-	}
+    @Test
+    public void testNullVerifyResponseMap() throws DiscoveryException, MessageException, AssociationException {
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
+        authenticator.getVerifiedSteamId(null);
+    }
 
 }
