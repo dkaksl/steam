@@ -9,6 +9,7 @@ package com.kilumanga.play.steam.i_steam_user;
 
 import java.util.List;
 
+import lombok.NonNull;
 import org.springframework.web.client.RestTemplate;
 
 import com.kilumanga.play.steam.constant.ExceptionMessage;
@@ -29,10 +30,7 @@ public class ISteamUser {
 
 	private final String uriStub = Uri.SERVICE_STUB.getUri() + "ISteamUser/";
 
-	public ISteamUser(ApiKey apiKey) {
-		if (apiKey == null) {
-			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
-		}
+	public ISteamUser(@NonNull ApiKey apiKey) {
 		this.apiKey = apiKey;
 	}
 
