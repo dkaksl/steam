@@ -8,6 +8,7 @@
 package com.kilumanga.play.steam.openid.data;
 
 import com.kilumanga.play.steam.constant.ExceptionMessage;
+import lombok.NonNull;
 
 /**
  * @author Amani
@@ -16,11 +17,7 @@ import com.kilumanga.play.steam.constant.ExceptionMessage;
 public class CallbackUrl {
 	private final String url;
 
-	public CallbackUrl(String url) {
-		if (url == null) {
-			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
-		}
-
+	public CallbackUrl(@NonNull String url) {
 		if (url.isEmpty()) {
 			throw new IllegalArgumentException(ExceptionMessage.INVALID_CALLBACK_URL.getExceptionMessage());
 		}
