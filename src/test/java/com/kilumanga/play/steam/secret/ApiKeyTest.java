@@ -23,8 +23,7 @@ public class ApiKeyTest {
 
 	@Test
 	public void testNullKey() {
-		exception.expect(IllegalArgumentException.class);
-		exception.expectMessage(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
+		exception.expect(NullPointerException.class);
 		new ApiKey(null);
 	}
 

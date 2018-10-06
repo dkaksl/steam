@@ -42,8 +42,7 @@ public class AuthenticatorTest {
 
     @Test
     public void testNullVerifyResponseMap() throws DiscoveryException, MessageException, AssociationException {
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
+        exception.expect(NullPointerException.class);
         authenticator.getVerifiedSteamId(null);
     }
 
