@@ -17,7 +17,7 @@ public enum ID {
 
 	private final String userId;
 
-	private ID(String userId) {
+	ID(String userId) {
 		this.userId = userId;
 	}
 
