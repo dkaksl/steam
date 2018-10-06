@@ -9,6 +9,7 @@ package com.kilumanga.play.steam.openid;
 
 import java.util.Map;
 
+import lombok.NonNull;
 import org.openid4java.association.AssociationException;
 import org.openid4java.consumer.ConsumerException;
 import org.openid4java.consumer.ConsumerManager;
@@ -33,10 +34,7 @@ public class Authenticator {
     private final ConsumerManager consumerManager = new ConsumerManager();
     private final DiscoveryInformation discoveryInformation;
 
-    public Authenticator(CallbackUrl callbackUrl) throws DiscoveryException {
-        if (callbackUrl == null) {
-            throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
-        }
+    public Authenticator(@NonNull CallbackUrl callbackUrl) throws DiscoveryException {
         this.callbackUrl = callbackUrl;
         consumerManager.setMaxAssocAttempts(0);
         discoveryInformation = consumerManager.associate(consumerManager.discover(Uri.STEAM_OPENID.getUri()));
@@ -47,10 +45,7 @@ public class Authenticator {
         return authRequest.getDestinationUrl(true);
     }
 
-    public String getVerifiedSteamId(Map<String, String> responseMap) throws MessageException, DiscoveryException, AssociationException {
-        if (responseMap == null) {
-            throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
-        }
+    public String getVerifiedSteamId(@NonNull Map<String, String> responseMap) throws MessageException, DiscoveryException, AssociationException {
         ParameterList parameterList = new ParameterList(responseMap);
         VerificationResult verificationResult = consumerManager.verify(this.callbackUrl.getUrl(), parameterList, this.discoveryInformation);
         Identifier verifiedId = verificationResult.getVerifiedId();
