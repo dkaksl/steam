@@ -7,6 +7,7 @@
  */
 package com.kilumanga.play.steam.i_player_service;
 
+import lombok.NonNull;
 import org.springframework.web.client.RestTemplate;
 
 import com.kilumanga.play.steam.constant.ExceptionMessage;
@@ -23,10 +24,7 @@ public class IPlayerService {
 
 	private final String uriStub = Uri.SERVICE_STUB.getUri() + "IPlayerService/";
 
-	public IPlayerService(ApiKey apiKey) {
-		if (apiKey == null) {
-			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
-		}
+	public IPlayerService(@NonNull ApiKey apiKey) {
 		this.apiKey = apiKey;
 	}
 
