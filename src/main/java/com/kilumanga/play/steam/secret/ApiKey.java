@@ -8,6 +8,7 @@
 package com.kilumanga.play.steam.secret;
 
 import com.kilumanga.play.steam.constant.ExceptionMessage;
+import lombok.NonNull;
 
 /**
  * @author Amani
@@ -16,10 +17,7 @@ import com.kilumanga.play.steam.constant.ExceptionMessage;
 public class ApiKey {
 	private final String key;
 
-	public ApiKey(String key) {
-		if (key == null) {
-			throw new IllegalArgumentException(ExceptionMessage.NULL_PARAMETER.getExceptionMessage());
-		}
+	public ApiKey(@NonNull String key) {
 		if (key.isEmpty()) {
 			throw new IllegalArgumentException(ExceptionMessage.INVALID_API_KEY.getExceptionMessage());
 		}
