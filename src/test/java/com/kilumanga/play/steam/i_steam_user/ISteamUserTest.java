@@ -27,10 +27,6 @@ import com.kilumanga.play.steam.i_steam_user.pojo.Friend;
 import com.kilumanga.play.steam.i_steam_user.pojo.Player;
 import com.kilumanga.play.steam.secret.ApiKey;
 
-/**
- * @author Amani
- *
- */
 public class ISteamUserTest {
 	private static ApiKey apiKey;
 

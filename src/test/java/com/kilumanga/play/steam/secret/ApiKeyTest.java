@@ -13,10 +13,6 @@ import org.junit.rules.ExpectedException;
 
 import com.kilumanga.play.steam.constant.ExceptionMessage;
 
-/**
- * @author Amani
- *
- */
 public class ApiKeyTest {
 	@Rule
 	public final ExpectedException exception = ExpectedException.none();
