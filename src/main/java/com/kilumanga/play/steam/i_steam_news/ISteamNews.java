@@ -7,10 +7,6 @@
  */
 package com.kilumanga.play.steam.i_steam_news;
 
-/**
- * @author Amani
- *
- */
 public class ISteamNews {
 	// TODO
 }

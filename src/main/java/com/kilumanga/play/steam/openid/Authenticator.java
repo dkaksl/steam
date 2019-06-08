@@ -1,14 +1,14 @@
-/** 
- * 
+/**
  * Copyright (C) 2018 Amani
- *
+ * <p>
  * This software may be modified and distributed under the terms
  * of the MIT license.  See the LICENSE file for details.
  */
 package com.kilumanga.play.steam.openid;
 
-import java.util.Map;
-
+import com.kilumanga.play.steam.constant.ExceptionMessage;
+import com.kilumanga.play.steam.constant.Uri;
+import com.kilumanga.play.steam.openid.data.CallbackUrl;
 import lombok.NonNull;
 import org.openid4java.association.AssociationException;
 import org.openid4java.consumer.ConsumerException;
@@ -21,14 +21,8 @@ import org.openid4java.message.AuthRequest;
 import org.openid4java.message.MessageException;
 import org.openid4java.message.ParameterList;
 
-import com.kilumanga.play.steam.constant.ExceptionMessage;
-import com.kilumanga.play.steam.constant.Uri;
-import com.kilumanga.play.steam.openid.data.CallbackUrl;
+import java.util.Map;
 
-/**
- * @author Amani
- *
- */
 public class Authenticator {
     private final CallbackUrl callbackUrl;
     private final ConsumerManager consumerManager = new ConsumerManager();

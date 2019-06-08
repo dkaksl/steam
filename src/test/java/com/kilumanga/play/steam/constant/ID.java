@@ -7,10 +7,6 @@
  */
 package com.kilumanga.play.steam.constant;
 
-/**
- * @author Amani
- *
- */
 public enum ID {
 	DEFAULT("76561197960435530"), //
 	;

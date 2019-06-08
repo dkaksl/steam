@@ -10,10 +10,6 @@ package com.kilumanga.play.steam.secret;
 import com.kilumanga.play.steam.constant.ExceptionMessage;
 import lombok.NonNull;
 
-/**
- * @author Amani
- *
- */
 public class ApiKey {
 	private final String key;
 

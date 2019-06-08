@@ -18,9 +18,6 @@ import org.openid4java.message.MessageException;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * @author Amani
- */
 public class AuthenticatorTest {
     private static final CallbackUrl callbackUrl = new CallbackUrl("https://steam.kilumanga.com");
     private static Authenticator authenticator;
